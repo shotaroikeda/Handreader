@@ -110,9 +110,9 @@ def plot_num():
     for num_result in final_processed:
         data = numpy.array(num_result)
         plt.pcolor(data)
-        plt.axis([0, image_h-1, 0, image_w-1])
-        plt.xticks(np.arange(0, image_h+1)+0.5, column)
-        plt.yticks(np.arange(0, image_w+1)+0.5, row)
+        plt.axis([1, image_h-1, 1, image_w-1])
+        plt.xticks(numpy.arange(0, image_h+1)+0.5, column)
+        plt.yticks(numpy.arange(0, image_w+1)+0.5, row)
         plt.show()
         
 
@@ -167,4 +167,5 @@ if __name__ == '__main__':
     print_final()
     adjust_laplace()
     print_final()
+    plot_num()
     # testing()
