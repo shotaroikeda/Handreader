@@ -1,6 +1,7 @@
 import math
 import numpy
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages 
 
 # Define some constants:
 image_w = 28
@@ -17,6 +18,28 @@ training_data = open('training/traininglabels')
 # manual implementation to keep it editable to an extent
 final_processed = [[], [], [], [], [], [], [], [], [], []]
 count_nums = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+def reset_all():
+    global ascii_image
+    ascii_image = open('training/trainingimages')
+
+    global training_data
+    training_data = open('training/traininglabels')
+
+    global final_processed
+    final_processed = [[], [], [], [], [], [], [], [], [], []]
+
+    global count_nums
+    count_nums = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    global test_images
+    test_images = file('training/testimages')
+
+    global test_data
+    test_data = file('training/testlabels')
+
+    global total_wrong
+    total_wrong = 0
 
 ##################################################################################
 # Functions for training()
@@ -45,13 +68,25 @@ def obtain_result():
     return num
 
 def add_data(data, result):
+    no_num = False
     for i in range(0, image_h):
+        if no_num:
+            break
         for j in range(0, image_w):
             if len(final_processed[result]) == 0:
                 final_processed[result] = data
+                no_num = True
                 break
             else:
                 final_processed[result][i][j]+=data[i][j]
+
+    # if result == 4:
+    #     for row in final_processed[result]:
+    #         print row
+    #     plt.pcolor(numpy.array(final_processed[result]))
+    #     plt.gca().invert_yaxis()
+    #     plt.show()
+    #     raw_input()
     
 # def process_truth():
 #     for i in range(0, 10):
@@ -79,18 +114,16 @@ def adjust_laplace():
 
 def conclude(test_image):
     prob_map = []
-    probability = 1L
     for i in range(0, 10):
+        probability = 0
         for j in range(0, image_h):
             for k in range(0, image_w):
                 occur = 0
                 if test_image[j][k] == 0:
-                    occur = 1 - final_processed[i][j][k] 
-                else:
-                    occur = final_processed[i][j][k]
+                    occur = math.log(1 - final_processed[i][j][k])
+                elif test_image[j][k] == 1:
+                    occur = math.log(final_processed[i][j][k])
                 probability += occur
-        # print probability
-        # raw_input('continue')
         prob_map.append(probability)
     return numpy.argmax(prob_map)
 
@@ -99,26 +132,32 @@ def check(num):
     if not (num == answer):
         global total_wrong
         total_wrong += 1
-        print "num: %d\n answer: %d\n" % (num, answer)
+        # print "num: %d\n answer: %d\n" % (num, answer)
 
 ##################################################################################
 # Graphing heat maps
 ##################################################################################
 def plot_num():
-    column = numpy.arange(image_h, -1, -1)
-    row = numpy.arange(image_w, -1, -1)
+    name = "heatmaps/%d_num_plots.pdf" % (laplace_const)
+    pdf = PdfPages(name)
+
+
+    column = numpy.arange(0, image_h-1)
+    row = numpy.arange(0, image_w-1)
     for num_result in final_processed:
         data = numpy.array(num_result)
         plt.pcolor(data)
-        plt.axis([1, image_h-1, 1, image_w-1])
-        plt.xticks(numpy.arange(0, image_h+1)+0.5, column)
-        plt.yticks(numpy.arange(0, image_w+1)+0.5, row)
-        plt.show()
-        
+        plt.gca().invert_yaxis()
+        plt.axis([1, image_h-2, image_w-2, 0])
+        plt.xticks(numpy.arange(0, image_h+1)+0.5)
+        plt.yticks(numpy.arange(0, image_w+1)+0.5)
+        plt.savefig(pdf, format='pdf')
+    pdf.close()
 
 ##################################################################################
 # Training + Postprocessing
 ##################################################################################
+outputfile = open('output.txt', 'w')
 
 def training():
     print "Training initial data with sample size %d" % (num_data)
@@ -141,16 +180,20 @@ def training():
     training_data.close()
     
 def testing():
-    print "Creating a probability map"
-    adjust_laplace()
-    
     print "Testing the provided data"
+    msg = "Testing Laplace Constant of %d\n" % (laplace_const)
+    outputfile.write(msg)
     for num in range(0, num_testing):
         test_image = obtain_num_text(test_images)
         result = conclude(test_image)
         check(result)
     print "Finished!"
-    print "Got %d wrong" % (total_wrong)
+    msg = "Got %d wrong\n\n" % (total_wrong)
+    print msg
+    outputfile.write(msg)
+    test_images.close()
+    test_data.close()
+    
 
 def evaluation():
     pass
@@ -163,9 +206,20 @@ def print_final():
             print final_processed[i][j]
 
 if __name__ == '__main__':
-    training()
-    print_final()
-    adjust_laplace()
-    print_final()
-    plot_num()
-    # testing()
+    for r in range(0, 50):
+        training()
+        adjust_laplace()
+        # print "Generating PDFs..."
+        # plot_num()
+        # print "Finished PDF"
+        testing()
+        print "--------------------------\n"
+        print "Reset ALL VARIABLES, INCREASE laplace by 1"
+        reset_all()
+        global laplace_const 
+        laplace_const += 1
+        print "Starting Next iteration..."
+        print "-------------------------\n"
+
+    output.close()
+

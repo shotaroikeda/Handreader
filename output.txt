@@ -1,0 +1,150 @@
+Testing Laplace Constant of 1
+Got 231 wrong
+
+Testing Laplace Constant of 2
+Got 233 wrong
+
+Testing Laplace Constant of 3
+Got 233 wrong
+
+Testing Laplace Constant of 4
+Got 236 wrong
+
+Testing Laplace Constant of 5
+Got 243 wrong
+
+Testing Laplace Constant of 6
+Got 246 wrong
+
+Testing Laplace Constant of 7
+Got 248 wrong
+
+Testing Laplace Constant of 8
+Got 249 wrong
+
+Testing Laplace Constant of 9
+Got 250 wrong
+
+Testing Laplace Constant of 10
+Got 248 wrong
+
+Testing Laplace Constant of 11
+Got 250 wrong
+
+Testing Laplace Constant of 12
+Got 249 wrong
+
+Testing Laplace Constant of 13
+Got 248 wrong
+
+Testing Laplace Constant of 14
+Got 248 wrong
+
+Testing Laplace Constant of 15
+Got 250 wrong
+
+Testing Laplace Constant of 16
+Got 249 wrong
+
+Testing Laplace Constant of 17
+Got 249 wrong
+
+Testing Laplace Constant of 18
+Got 252 wrong
+
+Testing Laplace Constant of 19
+Got 255 wrong
+
+Testing Laplace Constant of 20
+Got 257 wrong
+
+Testing Laplace Constant of 21
+Got 259 wrong
+
+Testing Laplace Constant of 22
+Got 258 wrong
+
+Testing Laplace Constant of 23
+Got 262 wrong
+
+Testing Laplace Constant of 24
+Got 262 wrong
+
+Testing Laplace Constant of 25
+Got 262 wrong
+
+Testing Laplace Constant of 26
+Got 263 wrong
+
+Testing Laplace Constant of 27
+Got 264 wrong
+
+Testing Laplace Constant of 28
+Got 264 wrong
+
+Testing Laplace Constant of 29
+Got 264 wrong
+
+Testing Laplace Constant of 30
+Got 263 wrong
+
+Testing Laplace Constant of 31
+Got 263 wrong
+
+Testing Laplace Constant of 32
+Got 264 wrong
+
+Testing Laplace Constant of 33
+Got 264 wrong
+
+Testing Laplace Constant of 34
+Got 264 wrong
+
+Testing Laplace Constant of 35
+Got 262 wrong
+
+Testing Laplace Constant of 36
+Got 262 wrong
+
+Testing Laplace Constant of 37
+Got 263 wrong
+
+Testing Laplace Constant of 38
+Got 262 wrong
+
+Testing Laplace Constant of 39
+Got 262 wrong
+
+Testing Laplace Constant of 40
+Got 261 wrong
+
+Testing Laplace Constant of 41
+Got 260 wrong
+
+Testing Laplace Constant of 42
+Got 260 wrong
+
+Testing Laplace Constant of 43
+Got 261 wrong
+
+Testing Laplace Constant of 44
+Got 262 wrong
+
+Testing Laplace Constant of 45
+Got 262 wrong
+
+Testing Laplace Constant of 46
+Got 262 wrong
+
+Testing Laplace Constant of 47
+Got 263 wrong
+
+Testing Laplace Constant of 48
+Got 263 wrong
+
+Testing Laplace Constant of 49
+Got 264 wrong
+
+Testing Laplace Constant of 50
+Got 265 wrong
+
