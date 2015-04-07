@@ -1,0 +1,3 @@
+Testing Laplace Constant of 9
+Got 250 wrong
+
